@@ -1,64 +1,55 @@
+Measurements M;
+Calculations C;
+User U;
 void setup() {
-  String gender = "female";
-  float height = 163;
-  float weight = 52;
-  float neck = 50;
-  float waist = 80;
-  float hip = 100;
-  float age = 17;
-  float activityFactor = 1.2;
+  M = new Measurements(163.0, 52.0, 50.0, 80.0, 100.0, 17.0, 1.2);
+  C = new Calculations(M, "female");
+  C.computeInBody();
+  U = new User(M, C, 47.0, 100);
+  U.compare();
+  U.getAdvice();
   
-  float bmi, bmr, bfp, bfw, lbm, tbw;
-  float caloricNeeds;
-  float carb, protein, fat;
+  size(600, 600);
+  background(255);
+} 
+
+void draw() {
+  background(255);
   
-  int overweight = 0;
-  int underweight = 0;
+  drawReport();
+  drawSolution();
+}
+
+void drawReport() {
+  textAlign(CENTER);
+  textSize(20);
+  fill(0);
+  text("Report", width/4, 50);
   
-  //computations
-  bmi = weight/pow(height/100, 2);
-  if (bmi > 25) {
-    overweight += 1;
-  }
-  else if (bmi < 18.5) {
-    underweight += 1;
-  }
+  textAlign(LEFT);
+  textSize(15);
+  text("Body Mass Index: " + C.bmi, 50, 100);
+  text("Basal Metabolic Rate: " + C.bmr + " cals", 50, 150);
+  text("Total Body Water: " + C.tbw + " %", 50, 200);
+  text("Body Fat Mass: " + C.bfm + " kg", 50, 250);
+  text("Body Fat Percentage: " + C.bfp + " %", 50, 300);
+  text("Lean Body Mass: " + C.lbm + " kg", 50, 350);
+}
+
+void drawSolution() {
+  textAlign(CENTER);
+  textSize(20);
+  fill(0);
+  text("D-"+(U.goalDays-1), width*3/4, 45);
+  textSize(15);
+  text("Diet Suggestions", width*3/4, 63);
+  text("Current: "+M.weight+" kg", width*3/4, 100);
+  text("Goal: "+U.goalWeight+" kg", width*3/4, 150);  
   
-  if (gender.equals("male")) {
-    bmr = 88.362 + 13.397*weight + 4.799*height - 5.677*age;
-    bfp = 495/(1.0324 - 0.19077*log(waist-neck)/log(10) + 0.15456*log(height)/log(10)) - 450;
-    if (bfp > 25) {
-      overweight += 1;
-    }
-    else if (bfp < 14) {
-      underweight += 1;
-    }
-    bfw = bfp*weight/100;
-    lbm = weight - bfw;
-    tbw = 2.447 - 0.09156*age + 0.1074*height + 0.3362*weight;
-  }
-  else {
-    bmr = 447.593 + 9.247*weight + 3.098*height - 4.330*age;
-    bfp = 495/(1.29579 - 0.35004*log(waist+hip-neck)/log(10) + 0.221*log(height)/log(10)) - 450;
-    if (bfp > 32) {
-      overweight += 1;
-    }
-    else if (bfp < 21) {
-      underweight += 1;
-    }
-    bfw = bfp*weight/100;
-    lbm = weight - bfw;
-    tbw = -2.097 + 0.1069*height + 0.2466*weight;
-  }
-  caloricNeeds = bmr * activityFactor;
-  
-  if (overweight == 2) {
-    println("You're overweight");
-  }
-  else if (underweight == 2) {
-    println("You're underweight");
-  }
-  else {
-    println("You're fit");
-  }
+  textAlign(LEFT);
+  textSize(15);
+  text("Daily Calories: "+ U.caloriesPerDay + " cals", width/2+50, 200);
+  text("Carbs: "+U.carbCalories[0]+"-"+U.carbCalories[1]+" cals", width/2+50, 250);
+  text("Fats: "+U.fatCalories[0]+"-"+U.fatCalories[1]+" cals", width/2+50, 300);
+  text("Proteins: "+U.proteinCalories[0]+"-"+U.proteinCalories[1]+" cals", width/2+50, 350);
 }
