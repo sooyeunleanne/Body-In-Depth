@@ -4,10 +4,10 @@ class User {
   float goalWeight;
   int goalDays;
   float diffWeight;
-  float caloriesPerDay;
-  float[] carbCalories = new float[2];
-  float[] fatCalories = new float[2];
-  float[] proteinCalories = new float[2];
+  int caloriesPerDay;
+  int[] carbCalories = new int[2];
+  int[] fatCalories = new int[2];
+  int[] proteinCalories = new int[2];
   
   User(Measurements mInput, Calculations cInput, float w, int d) {
     this.m = mInput;
@@ -23,25 +23,18 @@ class User {
       println("Consult your doctor for your weight loss plan");
     }
     else {
-      this.caloriesPerDay = this.c.caloricNeeds - 500*weightLossPerWeek/5;
+      this.caloriesPerDay = round(this.c.caloricNeeds - 500*weightLossPerWeek/5);
     }
   }
   
-  void getAdvice() {
-    println("Consume around", this.caloriesPerDay, "calories per day for", this.goalDays, "days");
+  void getAdvice() {    
+    this.carbCalories[0] = round(this.caloriesPerDay*0.45);
+    this.carbCalories[1] = round(this.caloriesPerDay*0.65);
     
-    this.carbCalories[0] = this.caloriesPerDay*0.45;
-    this.carbCalories[1] = this.caloriesPerDay*0.65;
+    this.fatCalories[0] = round(this.caloriesPerDay*0.25);
+    this.fatCalories[1] = round(this.caloriesPerDay*0.35);
     
-    this.fatCalories[0] = this.caloriesPerDay*0.25;
-    this.fatCalories[1] = this.caloriesPerDay*0.35;
-    
-    this.proteinCalories[0] = this.caloriesPerDay*0.10;
-    this.proteinCalories[1] = this.caloriesPerDay*0.30;
-    
-    println("Suggested carbohydrate consumption:", this.carbCalories[0], "-", this.carbCalories[1], "calories");
-    println("Suggested fat consumption:", this.fatCalories[0], "-", this.fatCalories[1], "calories");
-    println("Suggested protein consumption:", this.proteinCalories[0], "-", this.proteinCalories[1], "calories");
-
+    this.proteinCalories[0] = round(this.caloriesPerDay*0.10);
+    this.proteinCalories[1] = round(this.caloriesPerDay*0.30);
   }
 }

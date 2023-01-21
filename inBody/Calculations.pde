@@ -17,22 +17,22 @@ class Calculations {
     float age = this.m.age;
     float af = this.m.activityFactor;
     
-    this.bmi = w/pow(h/100, 2);
+    this.bmi = round2DP(w/pow(h/100, 2));
     if (this.gender.equals("male")) {
-      this.bmr = 88.362 + 13.397*w + 4.799*h - 5.677*age;
-      this.bfp = 495/(1.0324 - 0.19077*log(waist-neck)/log(10) + 0.15456*log(h)/log(10)) - 450;
-      this.bfm = this.bfp*w/100;
-      this.lbm = w - this.bfm;
-      this.tbw = (2.447 - 0.09156*age + 0.1074*h + 0.3362*w)/this.m.weight*100;
+      this.bmr = round2DP(88.362 + 13.397*w + 4.799*h - 5.677*age);
+      this.bfp = round2DP(495/(1.0324 - 0.19077*log(waist-neck)/log(10) + 0.15456*log(h)/log(10)) - 450);
+      this.bfm = round2DP(this.bfp*w/100);
+      this.lbm = round2DP(w - this.bfm);
+      this.tbw = round2DP((2.447 - 0.09156*age + 0.1074*h + 0.3362*w)/this.m.weight*100);
     }
     else {
-      this.bmr = 447.593 + 9.247*w + 3.098*h - 4.330*age;
-      this.bfp = 495/(1.29579 - 0.35004*log(waist+hip-neck)/log(10) + 0.221*log(h)/log(10)) - 450;
-      this.bfm = this.bfp*w/100;
-      this.lbm = w - this.bfm;
-      this.tbw = (-2.097 + 0.1069*h + 0.2466*w)/this.m.weight*100;
+      this.bmr = round2DP(447.593 + 9.247*w + 3.098*h - 4.330*age);
+      this.bfp = round2DP(495/(1.29579 - 0.35004*log(waist+hip-neck)/log(10) + 0.221*log(h)/log(10)) - 450);
+      this.bfm = round2DP(this.bfp*w/100);
+      this.lbm = round2DP(w - this.bfm);
+      this.tbw = round2DP((-2.097 + 0.1069*h + 0.2466*w)/this.m.weight*100);
     }
-    this.caloricNeeds = this.bmr * af;
+    this.caloricNeeds = round2DP(this.bmr * af);
   }
   
   void compare() {
