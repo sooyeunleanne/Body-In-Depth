@@ -2,6 +2,7 @@ class Calculations {
   Measurements m;
   String gender;
   float bmi, bmr, bfp, bfm, lbm, tbw, caloricNeeds;
+  String analysis;
   
   Calculations(Measurements mInput, String g) {
     this.m = mInput;
@@ -35,42 +36,75 @@ class Calculations {
     this.caloricNeeds = round2DP(this.bmr * af);
   }
   
-  void compare() {
+  String compare() {
     int overweight = 0;
     int underweight = 0;
     
-    if (this.bmi > 25) {
-      overweight += 1;
-    }
-    else if (this.bmi < 18.5) {
+    if (this.bmi <= 18.5) {
       underweight += 1;
     }
-    
+    else if (this.bmi <= 24.9) {
+      //do nothing
+    }
+    else if (this.bmi <= 29.9) {
+      overweight += 1;
+    }
+    else {
+      overweight += 2;
+    }
+      
     if (this.gender.equals("male")) {
-      if (this.bfp > 25) {
+      if (this.bfp <= 5) {
+        underweight += 2;
+      }
+      else if (this.bfp <= 13) {
+        underweight += 1;
+      }
+      else if (this.bfp <= 17) {
+        //do nothing
+      }
+      else if (this.bfp <= 24) {
         overweight += 1;
       }
-      else if (this.bfp < 14) {
-        underweight += 1;
+      else {
+        overweight += 2;
       }
     }
     else {
-      if (this.bfp > 32) {
+      if (this.bfp <= 13) {
+        underweight += 2;
+      }
+      else if (this.bfp <= 20) {
+        underweight += 1;
+      }
+      else if (this.bfp <= 24) {
+        //do nothing
+      }
+      else if (this.bfp <= 30) {
         overweight += 1;
       }
-      else if (this.bfp < 21) {
-        underweight += 1;
+      else {
+        overweight += 2;
       }
     }
     
-    if (overweight == 2) {
-      println("You're overweight");
+    if (overweight >= 4) {
+      return "Obese";
     }
-    else if (underweight == 2) {
-      println("You're underweight");
+    else if (overweight >= 2) {
+      return "Overweight";
+    }
+    else if (overweight >= 1){
+      return "Overweight/Fit";
+    }
+    else if (underweight >= 3){
+      return "Extremely Underweight";
+    }
+    else if (underweight >= 1){
+      return "Underweight";
     }
     else {
-      println("You're fit");
-    }
+      return "Fit";
+    }  
   }
 }

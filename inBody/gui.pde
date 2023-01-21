@@ -14,6 +14,17 @@
  * =========================================================
  */
 
+public void dictionaryButton_click(GButton source, GEvent event) { //_CODE_:dictionaryButton:202076:
+  if (dictionaryOpen == true) {
+    dictionaryButton.setText("Open Dictionary");
+    dictionaryOpen = false;
+  }
+  else {
+    dictionaryButton.setText("Close Dictionary");
+    dictionaryOpen = true;
+  }
+} //_CODE_:dictionaryButton:202076:
+
 synchronized public void input_draw(PApplet appc, GWinData data) { //_CODE_:input:675210:
   appc.background(230);
 } //_CODE_:input:675210:
@@ -89,6 +100,48 @@ public void femaleButton_click(GButton source, GEvent event) { //_CODE_:femaleBu
   calculated = true;
 } //_CODE_:femaleButton:617635:
 
+public void unitConverterButton_click(GButton source, GEvent event) { //_CODE_:unitConverterButton:650238:
+  unitConverter = GWindow.getWindow(this, "Convert Units", 0, 0, 200, 150, JAVA2D);
+  unitConverter.noLoop();
+  unitConverter.setActionOnClose(G4P.KEEP_OPEN);
+  unitConverter.addDrawHandler(this, "unitConverter_draw");
+  unitConverterLabel = new GLabel(unitConverter, 50, 10, 100, 20);
+  unitConverterLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  unitConverterLabel.setText("Convert Units");
+  unitConverterLabel.setOpaque(false);
+  kgInput = new GTextField(unitConverter, 16, 40, 50, 30, G4P.SCROLLBARS_NONE);
+  kgInput.setOpaque(true);
+  kgInput.addEventHandler(this, "kgInput_change");
+  kgLabel = new GLabel(unitConverter, 66, 45, 30, 20);
+  kgLabel.setText("kg = ");
+  kgLabel.setOpaque(false);
+  lbInput = new GTextField(unitConverter, 100, 40, 50, 30, G4P.SCROLLBARS_NONE);
+  lbInput.setOpaque(true);
+  lbInput.addEventHandler(this, "lbInput_change");
+  lbLabel = new GLabel(unitConverter, 150, 45, 30, 20);
+  lbLabel.setText("lbs");
+  lbLabel.setOpaque(false);
+  cmInput = new GTextField(unitConverter, 15, 75, 50, 30, G4P.SCROLLBARS_NONE);
+  cmInput.setOpaque(true);
+  cmInput.addEventHandler(this, "cmInput_change");
+  cmLabel = new GLabel(unitConverter, 65, 78, 40, 20);
+  cmLabel.setText("cm =");
+  cmLabel.setOpaque(false);
+  inchInput = new GTextField(unitConverter, 135, 75, 30, 30, G4P.SCROLLBARS_NONE);
+  inchInput.setOpaque(true);
+  inchInput.addEventHandler(this, "inchInput_change");
+  ftLabel = new GLabel(unitConverter, 123, 80, 20, 20);
+  ftLabel.setText("ft");
+  ftLabel.setOpaque(false);
+  ftInput = new GTextField(unitConverter, 100, 75, 20, 30, G4P.SCROLLBARS_NONE);
+  ftInput.setOpaque(true);
+  ftInput.addEventHandler(this, "ftInput_change");
+  inchLabel = new GLabel(unitConverter, 165, 80, 35, 20);
+  inchLabel.setText("inch");
+  inchLabel.setOpaque(false);
+  unitConverter.loop();
+} //_CODE_:unitConverterButton:650238:
+
 synchronized public void unitConverter_draw(PApplet appc, GWinData data) { //_CODE_:unitConverter:993792:
   appc.background(230);
 } //_CODE_:unitConverter:993792:
@@ -133,6 +186,10 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
+  dictionaryButton = new GButton(this, 480, 550, 100, 30);
+  dictionaryButton.setText("Open Dictionary");
+  dictionaryButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  dictionaryButton.addEventHandler(this, "dictionaryButton_click");
   input = GWindow.getWindow(this, "Measurements and Goals", 0, 0, 400, 600, JAVA2D);
   input.noLoop();
   input.setActionOnClose(G4P.KEEP_OPEN);
@@ -255,50 +312,16 @@ public void createGUI(){
   femaleButton.setText("Female");
   femaleButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   femaleButton.addEventHandler(this, "femaleButton_click");
-  unitConverter = GWindow.getWindow(this, "Convert Units", 0, 0, 200, 150, JAVA2D);
-  unitConverter.noLoop();
-  unitConverter.setActionOnClose(G4P.KEEP_OPEN);
-  unitConverter.addDrawHandler(this, "unitConverter_draw");
-  unitConverterLabel = new GLabel(unitConverter, 50, 10, 100, 20);
-  unitConverterLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  unitConverterLabel.setText("Convert Units");
-  unitConverterLabel.setOpaque(false);
-  kgInput = new GTextField(unitConverter, 16, 40, 50, 30, G4P.SCROLLBARS_NONE);
-  kgInput.setOpaque(true);
-  kgInput.addEventHandler(this, "kgInput_change");
-  kgLabel = new GLabel(unitConverter, 66, 45, 30, 20);
-  kgLabel.setText("kg = ");
-  kgLabel.setOpaque(false);
-  lbInput = new GTextField(unitConverter, 100, 40, 50, 30, G4P.SCROLLBARS_NONE);
-  lbInput.setOpaque(true);
-  lbInput.addEventHandler(this, "lbInput_change");
-  lbLabel = new GLabel(unitConverter, 150, 45, 30, 20);
-  lbLabel.setText("lbs");
-  lbLabel.setOpaque(false);
-  cmInput = new GTextField(unitConverter, 15, 75, 50, 30, G4P.SCROLLBARS_NONE);
-  cmInput.setOpaque(true);
-  cmInput.addEventHandler(this, "cmInput_change");
-  cmLabel = new GLabel(unitConverter, 65, 78, 40, 20);
-  cmLabel.setText("cm =");
-  cmLabel.setOpaque(false);
-  inchInput = new GTextField(unitConverter, 135, 75, 30, 30, G4P.SCROLLBARS_NONE);
-  inchInput.setOpaque(true);
-  inchInput.addEventHandler(this, "inchInput_change");
-  ftLabel = new GLabel(unitConverter, 123, 80, 20, 20);
-  ftLabel.setText("ft");
-  ftLabel.setOpaque(false);
-  ftInput = new GTextField(unitConverter, 100, 75, 20, 30, G4P.SCROLLBARS_NONE);
-  ftInput.setOpaque(true);
-  ftInput.addEventHandler(this, "ftInput_change");
-  inchLabel = new GLabel(unitConverter, 165, 80, 35, 20);
-  inchLabel.setText("inch");
-  inchLabel.setOpaque(false);
+  unitConverterButton = new GButton(input, 240, 560, 150, 30);
+  unitConverterButton.setText("Open Unit Converter");
+  unitConverterButton.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
+  unitConverterButton.addEventHandler(this, "unitConverterButton_click");
   input.loop();
-  unitConverter.loop();
 }
 
 // Variable declarations 
 // autogenerated do not edit
+GButton dictionaryButton; 
 GWindow input;
 GSlider activityInput; 
 GLabel heightLabel; 
@@ -332,6 +355,7 @@ GTextField goalWeightInput;
 GTextField goalDaysInput; 
 GButton maleButton; 
 GButton femaleButton; 
+GButton unitConverterButton; 
 GWindow unitConverter;
 GLabel unitConverterLabel; 
 GTextField kgInput; 
