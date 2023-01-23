@@ -316,7 +316,46 @@ public void createGUI(){
   unitConverterButton.setText("Open Unit Converter");
   unitConverterButton.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
   unitConverterButton.addEventHandler(this, "unitConverterButton_click");
+  //unitConverter = GWindow.getWindow(this, "Convert Units", 0, 0, 200, 150, JAVA2D);
+  //unitConverter.noLoop();
+  //unitConverter.setActionOnClose(G4P.KEEP_OPEN);
+  //unitConverter.addDrawHandler(this, "unitConverter_draw");
+  //unitConverterLabel = new GLabel(unitConverter, 50, 10, 100, 20);
+  //unitConverterLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  //unitConverterLabel.setText("Convert Units");
+  //unitConverterLabel.setOpaque(false);
+  //kgInput = new GTextField(unitConverter, 16, 40, 50, 30, G4P.SCROLLBARS_NONE);
+  //kgInput.setOpaque(true);
+  //kgInput.addEventHandler(this, "kgInput_change");
+  //kgLabel = new GLabel(unitConverter, 66, 45, 30, 20);
+  //kgLabel.setText("kg = ");
+  //kgLabel.setOpaque(false);
+  //lbInput = new GTextField(unitConverter, 100, 40, 50, 30, G4P.SCROLLBARS_NONE);
+  //lbInput.setOpaque(true);
+  //lbInput.addEventHandler(this, "lbInput_change");
+  //lbLabel = new GLabel(unitConverter, 150, 45, 30, 20);
+  //lbLabel.setText("lbs");
+  //lbLabel.setOpaque(false);
+  //cmInput = new GTextField(unitConverter, 15, 75, 50, 30, G4P.SCROLLBARS_NONE);
+  //cmInput.setOpaque(true);
+  //cmInput.addEventHandler(this, "cmInput_change");
+  //cmLabel = new GLabel(unitConverter, 65, 78, 40, 20);
+  //cmLabel.setText("cm =");
+  //cmLabel.setOpaque(false);
+  //inchInput = new GTextField(unitConverter, 135, 75, 30, 30, G4P.SCROLLBARS_NONE);
+  //inchInput.setOpaque(true);
+  //inchInput.addEventHandler(this, "inchInput_change");
+  //ftLabel = new GLabel(unitConverter, 123, 80, 20, 20);
+  //ftLabel.setText("ft");
+  //ftLabel.setOpaque(false);
+  //ftInput = new GTextField(unitConverter, 100, 75, 20, 30, G4P.SCROLLBARS_NONE);
+  //ftInput.setOpaque(true);
+  //ftInput.addEventHandler(this, "ftInput_change");
+  //inchLabel = new GLabel(unitConverter, 165, 80, 35, 20);
+  //inchLabel.setText("inch");
+  //inchLabel.setOpaque(false);
   input.loop();
+  //unitConverter.loop();
 }
 
 // Variable declarations 
