@@ -18,13 +18,14 @@ void drawReport() {
 
 void drawSolution() {
   textAlign(CENTER);
-  textFont(font1);
+  textFont(font3);
   fill(0);
-  text("D-"+(U.goalDays-1), width*3/4, 45);
+  text("D-"+(U.goalDays-1), width*3/4-20, 45);
+  textFont(font1);
   textSize(15);
-  text("Diet Suggestions", width*3/4, 63);
-  text("Current: "+M.weight+" kg", width*3/4, 100);
-  text("Goal: "+U.goalWeight+" kg", width*3/4, 150);  
+  text("Diet Suggestions", width*3/4-20, 63);
+  text("Current: "+M.weight+" kg", width*3/4-20, 100);
+  text("Goal: "+U.goalWeight+" kg", width*3/4-20, 150);  
   
   textAlign(LEFT);
   textFont(font2);
