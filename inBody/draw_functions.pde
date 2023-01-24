@@ -1,11 +1,11 @@
 void drawReport() {
-  image(logoSmall, width/2, 50);
+  image(logoTransparent, width/2, height/2);
   
   frameRate(60);
   textAlign(LEFT);
   textFont(font3);
   fill(0);
-  text("Report: " + C.compare(), 50, 50);
+  text("Report: " + C.compare(), 50, 60);
   
   textFont(font2);
   text("Body Mass Index: " + C.bmi, 50, 100);
@@ -35,6 +35,7 @@ void drawSolution() {
 }
 
 void drawGraph() {
+  stroke(0);
   strokeWeight(2);
   line(50,400,50,550);
   line(50,550,250,550);
@@ -54,7 +55,7 @@ void drawGraph() {
 
 void drawDictionary() {
   textAlign(LEFT);
-  fill(170, 245, 90);
+  fill(200, 230, 140);
   noStroke();
   rect(280, 0, width, height);
   fill(0);
@@ -106,7 +107,7 @@ void drawDictionary() {
 
 void drawFoodExamples() {
   textFont(font4);
-  text("Examples of Healthy Carbs:\npotatoes, beans, rice, banana, green vegetables", 300, 400);
+  text("Examples of Healthy Carbs:\npotatoes, rice, banana, green vegetables", 300, 400);
   text("Examples of Healthy Fats:\nolive oil, nuts, egg, fish, cheese", 300, 450);
   text("Examples of Protein:\nfish, chicken, seafood, lean beef, egg, cheese", 300, 500);
 }
