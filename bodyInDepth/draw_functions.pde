@@ -12,14 +12,14 @@ void loadingPage() { //draw the loading page
   textAlign(CENTER);
   textFont(font1);  
   if (loadingN%3 == 0) {
-    text("Loading . . . ", width/2, height/2);
+    text("Waiting for your input . . . ", width/2, height/2);
     loadingN = 0;
   }
   else if (loadingN%3 == 1) {
-    text("Loading . ", width/2, height/2);
+    text("Waiting for your input . ", width/2, height/2);
   }
   else {
-    text("Loading . . ", width/2, height/2);
+    text("Waiting for your input . . ", width/2, height/2);
   }
   loadingN += 1;
   
