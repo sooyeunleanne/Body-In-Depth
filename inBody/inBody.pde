@@ -1,4 +1,4 @@
-//Leanne Kim - CS Final Project: InBody
+//Leanne Kim - CS Final Project: Body In Depth
 
 import g4p_controls.*;
 import java.awt.*;
